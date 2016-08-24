@@ -1,6 +1,6 @@
 # facebian
 
-> A Raspberry PI w/ OpenCV experiment.
+> A Raspberry Pi w/ OpenCV experiment.
 
 ## Dependencies
 
