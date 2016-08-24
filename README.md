@@ -7,3 +7,4 @@
 * OpenCV compiled on OS X 10.11.6
 * ffmpeg
 * VLC (CLI)
+* Java 8
