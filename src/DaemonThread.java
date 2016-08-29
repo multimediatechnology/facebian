@@ -1,7 +1,8 @@
 import org.opencv.core.*;
-import org.opencv.highgui.Highgui;
-import org.opencv.highgui.VideoCapture;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.videoio.VideoCapture;
 
 class DaemonThread implements Runnable {
 
@@ -11,7 +12,6 @@ class DaemonThread implements Runnable {
   private Mat image = new Mat();
   private CascadeClassifier faceDetector = new CascadeClassifier("assets/haarcascade_frontalface_alt.xml");
   private MatOfRect faceDetections = new MatOfRect();
-  private MatOfByte buffer = new MatOfByte();
 
   DaemonThread() {
     webSource = new VideoCapture();
@@ -30,23 +30,18 @@ class DaemonThread implements Runnable {
           webSource.retrieve(image);
           faceDetector.detectMultiScale(image, faceDetections);
           Rect[] rects = faceDetections.toArray();
+          System.out.println(String.format("%s faces detected.", rects.length));
           for (Rect rect : rects) {
-            Core.rectangle(
+            Imgproc.rectangle(
               image,
               new Point(rect.x, rect.y),
               new Point(rect.x + rect.width, rect.y + rect.height),
               new Scalar(0, 255, 0)
             );
           }
-          Highgui.imencode(".jpg", image, buffer);
-          try {
-            System.out.write(buffer.toArray());
-            System.out.flush();
-          } catch (Exception ex) {
-            //System.err.println(ex);
-          }
+          //Imgcodecs.imwrite("test.png", image);
         } else {
-          //System.err.println("Cannot grab image");
+          System.err.println("Cannot grab image");
         }
       }
     }

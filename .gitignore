@@ -6,3 +6,7 @@
 
 # Build
 build/
+
+# OpenCV
+bin/
+lib/

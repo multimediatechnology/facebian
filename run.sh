@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 java -Djava.library.path=/Users/hannesmoser/Documents/projects/fh/impulse/face-recognition/lib \
-     -classpath /Users/hannesmoser/Documents/projects/fh/impulse/face-recognition/bin/opencv-2413.jar:/Users/hannesmoser/Documents/projects/fh/impulse/face-recognition/build/jar/FaceRecognition.jar \
+     -classpath /Users/hannesmoser/Documents/projects/fh/impulse/face-recognition/bin/opencv-310.jar:/Users/hannesmoser/Documents/projects/fh/impulse/face-recognition/build/jar/FaceRecognition.jar \
      FaceRecognition \
      | ffmpeg \
         -re \
